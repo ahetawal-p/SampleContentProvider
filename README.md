@@ -4,24 +4,24 @@ Sample ContentProvider Project
 ### Motivation
 I did this project in an attempt to clear my basics for the below mentioned terms and how they
 interact with each other.
-The app contains a custom `ContentProvider` to store data entries to from user.
-The table just has columns _ID|Name
+The app contains a custom `ContentProvider` to store data entries from user.
+The table just has columns _ID | Name
 Uses a `RecyclerView` to display the data from the `ContentProvider` using `Loaders`. Also has couple of buttons to
-be used for update/delete data from the `ContentProvider` using `SQLiteOpenHelper` and `ContentResolver`.
+be used for update/delete data on the `ContentProvider` using `SQLiteOpenHelper` and `ContentResolver`.
 
 
 
 #### `ContentProvider`
-`ContentProvider` provide the extra level of abstraction over your data to make it easier to change internally.
+`ContentProvider` provides the extra level of abstraction over your data to make it easier to change internally.
 Able to re-use the same standard API for accessing data rather than littering your code with low-level access to the database.
 Also works well with `SyncAdapters` and `Loaders`
 
 #### `SQLiteOpenHelper`
-This the actual `Database accessor` which is used inside `contentprovider` methods
-`insert/update/delete/query` to access data from sqlite db.
+This the actual `Database accessor` which is used inside `ContentProvider` methods
+`insert/update/delete/query` to access data from sqlite db storage.
 
 #### `ContentResolver`
-The client api, which is used to access the `contentprovider` from an app. An
+The client api, which is used to access the `ContentProvider` from an app. An
 app only access the data from storage through `ContentResolver`
 
 
@@ -29,8 +29,8 @@ app only access the data from storage through `ContentResolver`
 Loader is a class offered by the Android Framework. It loads data
 in a background thread and offers a callback interface to allow you to
 use that data once it's loaded. We use the Loader together with a database cursor.
-`Loaders` are usually a better way to call the **query()** method on the `contentprovider` to keep
- updating `recyclerview` as the data is `inserted/updated` on the provider.
+`Loaders` are usually a better way to call the **query()** method on the `ContentProvider` to keep
+ updating `RecyclerView` as the data is `inserted/updated` on the provider.
 
 
 ```
