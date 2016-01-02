@@ -1,8 +1,15 @@
 Sample ContentProvider Project
 =================================
 
+### Motivation
 I did this project in an attempt to clear my basics for the below mentioned terms and how they
-interact with each other
+interact with each other.
+The app contains a custom `ContentProvider` to store data entries to from user.
+The table just has columns _ID|Name
+Uses a `RecyclerView` to display the data from the `ContentProvider` using `Loaders`. Also has couple of buttons to
+be used for update/delete data from the `ContentProvider` using `SQLiteOpenHelper` and `ContentResolver`.
+
+
 
 #### `ContentProvider`
 `ContentProvider` provide the extra level of abstraction over your data to make it easier to change internally.
@@ -28,14 +35,15 @@ use that data once it's loaded. We use the Loader together with a database curso
 
 ```
 The call stack looks like :
-App -> ContentResolver.query() -> ContentPorivder.query() -> SQLiteOpenHelper.query() -> SQLite DB
+
+App -> ContentResolver.query() -> ContentProvider.query() -> SQLiteOpenHelper.query() -> SQLite DB
+
 
 Query() -> Use Loaders if you need automatic notifications for data updates.
-
 Insert/Update/Delete -> Use ContentResolver methods for these operations
 ```
 
-> **Note:** Query() can also be used with Resolver method for one time uses. But if you are poupluating
+> **Note:** Query() can also be used with Resolver method for one time uses. But if you are populating
 recyclerviews and need auto updates use loaders.
 
 
@@ -49,8 +57,10 @@ once the operation is completed.
 
 
 #### `RecyclerView`
-
-
-
-
+Used for displaying the data from the `ContentProvider`. Its a replacement for the older `ListViews`.
+I have used `Loaders` along with `RecyclerView` to get automatic updates on UI, if data is added/updated/deleted
+on the `ContentProvider`.
+> **Note:** Had to integrate some of the Loader functionality in the RecyclerView adapter for it to react accordingly
+when it receives datachange notifications from the loader, so that the adapter can update the view/rows accordingly.
+See: [DataViewerAdapter.java](https://github.com/ahetawal/SampleContentProvider/blob/master/app/src/main/java/com/sampleapp/adapter/DataViewerAdapter.java) for changes.
 
