@@ -22,7 +22,7 @@ public class DataEntryFragment extends DialogFragment {
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
     public interface DataEntryListener {
-        public void onDialogPositiveClick(String value);
+        public void onDialogSaveButtonClick(String value);
     }
 
     // Use this instance of the interface to deliver action events
@@ -57,9 +57,9 @@ public class DataEntryFragment extends DialogFragment {
         builder.setView(customView)
                 .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Send the positive button event back to the host activity
+                        // Send the save button event back to the host activity
                         EditText name = (EditText) customView.findViewById(R.id.editText);
-                        mListener.onDialogPositiveClick(name.getText().toString());
+                        mListener.onDialogSaveButtonClick(name.getText().toString());
                     }
                 });
 
